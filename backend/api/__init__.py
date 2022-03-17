@@ -29,7 +29,7 @@ logger_tortoise.setLevel(logging.DEBUG)
 logger_tortoise.addHandler(sh)
 
 register_tortoise(app,
-                  db_url="sqlite:///watch.db",
+                  db_url="sqlite://watch.db",
                   modules={"models":["backend.models"]},
                   generate_schemas=True,
                   add_exception_handlers=True,)
