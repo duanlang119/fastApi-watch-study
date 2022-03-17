@@ -12,7 +12,7 @@ login = APIRouter(tags=["认证相关"])
 async def user_login(form_data: OAuth2PasswordRequestForm = Depends()):
     if user := await User.get(username=form_data.username):
         if verify_password(form_data.password,user.password):
-            return {"access_token":create_access_token({"id":user.pk}),"token_type":"bearer"}
+            return {"access_token":create_access_token({"sub":user.username}),"token_type":"bearer"}
         return {"msg":"账号或密码错误"}
 
 @login.post("/user", summary="用户新增")
